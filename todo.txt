@@ -1,0 +1,20 @@
+
+"ici %d %s "   ---> strdup 
+
+while (flag[i])
+{
+	if (flag[i] == '%')
+	{
+		i++;
+		while (flag [FLAGS/option ICI])
+			(copie) end =;
+		i++;
+	}
+
+}
+
+
+
+%c	strdup > putchar
+%s	strndup > putstr > putchar
+
