@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 00:56:13 by gpaul             #+#    #+#              #
-#    Updated: 2021/01/11 09:30:59 by gpaul            ###   ########.fr        #
+#    Updated: 2021/01/11 16:18:09 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,9 @@ SRC_PATH = ./srcs
 INC_PATH = ./include
 OBJ_PATH = ./obj
 
-INC_NAME = ft_printf.h 
+INC_NAME = ft_printf.h, libft/libft.a
 
-SRC_NAME = ft_printf.c \
-		print_xX.c \
-		print_int.c \
-		print_string.c \
-		print_p.c \
+SRC_NAME = ft_printf.c
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
