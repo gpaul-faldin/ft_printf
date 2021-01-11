@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/11 16:38:10 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/11 16:57:15 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 void	ft_param(char conv, va_list param, st_list *list)
 {
 	if (conv == CONVERT[0])
-	{
 		list->c_para = va_arg(param, int);
-	}
 	else if (conv == CONVERT[1])
 	{
 		list->s_para = va_arg(param, char *);
 		list->s_para = ft_strdup (list->s_para);
 	}
+	else if (conv == CONVERT[3] || conv == CONVERT[4])
+		list->d_para = va_arg(param, int);
 }
 
 void	ft_str_c(char format, st_list *list ,va_list param)
@@ -42,10 +42,22 @@ void	ft_str_c(char format, st_list *list ,va_list param)
 	
 }
 
+void	ft_nb(char format, st_list *list ,va_list param)
+{
+	ft_putnbr_fd(list->d_para, 1);
+	while (list->d_para != 0)
+	{
+		list->d_para /= 10;
+		list->nbr_print = list->nbr_print + 1;
+	}
+}
+
 int		ft_print(char format, st_list *list, va_list param)
 {
 	if (format == CONVERT[0] || format == CONVERT[1])
 		ft_str_c(format, list ,param);
+	if (format == CONVERT[3] || format == CONVERT[4])
+		ft_nb(format, list, param);
 	return (0);
 }
 
@@ -78,6 +90,8 @@ void	ft_init_struc(st_list *list)
 	list->nbr_print = 0;
 	list->c_para = 0;
 	list->s_para = 0;
+	list->d_para = 0;
+	list->ui_para = 0;
 }
 
 int		ft_printf(const char *format, ...)
