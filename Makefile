@@ -6,11 +6,13 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 00:56:13 by gpaul             #+#    #+#              #
-#    Updated: 2021/01/11 16:18:09 by gpaul            ###   ########.fr        #
+#    Updated: 2021/01/12 21:01:08 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+
+LIBFT = ./libft/libft.a
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -c -I$(INC_PATH)
@@ -19,9 +21,13 @@ SRC_PATH = ./srcs
 INC_PATH = ./include
 OBJ_PATH = ./obj
 
-INC_NAME = ft_printf.h, libft/libft.a
+INC_NAME = ft_printf.h
 
-SRC_NAME = ft_printf.c
+SRC_NAME =		ft_printf.c			\
+				ft_print_char.c		\
+				ft_print_nbr.c		\
+				ft_print_utils.c
+
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -32,6 +38,8 @@ INC = $(addprefix $(INC_PATH)/, $(INC_NAME))
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(INC)
+	$(MAKE) bonus -C ./libft
+	cp libft/libft.a $(NAME)
 	ar rcs $(NAME) $(OBJ)
 	ranlib $(NAME)
 
@@ -40,9 +48,11 @@ $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
+	$(MAKE) clean -C ./libft
 	rm -rf $(OBJ_PATH)
 
 fclean: clean
+	$(MAKE) fclean -C ./libft
 	rm -rf ./obj $(NAME)
 
 re: fclean all
