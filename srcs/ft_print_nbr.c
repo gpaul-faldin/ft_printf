@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/12 18:25:08 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/12 19:42:20 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,30 @@ int			ft_print_hex(unsigned int nb, char *base, t_struct *list)
 	temp[i] = '\0';
 	write(1, ft_rev(temp), ft_strlen(temp));
 	free(temp);
+	return (0);
+}
+
+int			ft_print_ptr(long long int nb, char *base, t_struct *list)
+{
+	char	*temp;
+	int		i;
+	int		size;
+
+	size = size_ptr(nb) - 1;
+	i = 0;
+	list->nbr_print = list->nbr_print + size - 1;
+	if (!(temp = malloc(sizeof(char) * size)))
+		return (1);
+	while (nb)
+	{
+		temp[i++] = base[nb % 16];
+		nb /= 16;
+	}
+	temp[i] = '\0';
+	write(1, "0x", 2);
+	write(1, ft_rev(temp), ft_strlen(temp));
+	free(temp);
+	free(list->vd_ptr);
 	return (0);
 }
 
@@ -64,6 +88,8 @@ void		ft_hexa_ui(t_struct *list, char format)
 {
 	if (format == CONVERT[5])
 		ft_unsigned_print(list->ui_para, list);
+	else if (format == CONVERT[2])
+		ft_print_ptr((long long int)list->vd_ptr, list->h_hexa, list);
 	else if (format == CONVERT[6])
 		ft_print_hex(list->hexa, list->h_hexa, list);
 	else

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/12 18:22:09 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/12 19:42:34 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef	struct	s_struct
 	char			*m_hexa;
 	char			*h_hexa;
 	unsigned int	hexa;
+	void			*vd_ptr;
 }				t_struct;
 
 int				ft_printf(const char *format, ...);
@@ -37,5 +38,6 @@ char			*ft_rev(char *re);
 void			ft_str_c(char format, t_struct *list);
 int				size_count(unsigned int n);
 int				ft_check_convert(char c);
+int				size_ptr(long long int n);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/12 18:21:58 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/12 19:06:22 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@ void	ft_param(char conv, va_list param, t_struct *list)
 	{
 		list->s_para = va_arg(param, char *);
 		list->s_para = ft_strdup(list->s_para);
+	}
+	else if (conv == CONVERT[2])
+	{
+		list->vd_ptr = va_arg(param, void*);
+		list->vd_ptr = ft_strdup(list->vd_ptr);
 	}
 	else if (conv == CONVERT[3] || conv == CONVERT[4])
 		list->d_para = va_arg(param, int);
@@ -44,7 +49,7 @@ int		ft_print(char format, t_struct *list)
 		return (1);
 	}
 	else if (format == CONVERT[6] || format == CONVERT[7] ||
-		format == CONVERT[5])
+		format == CONVERT[5] || format == CONVERT[2])
 	{
 		ft_hexa_ui(list, format);
 		return (1);
@@ -85,11 +90,12 @@ void	ft_init_struc(t_struct *list)
 	list->m_hexa = "0123456789ABCDEF";
 	list->h_hexa = "0123456789abcdef";
 	list->hexa = 0;
+	list->vd_ptr = 0;
 }
 
 int		ft_printf(const char *format, ...)
 {
-	va_list		param;
+	va_list			param;
 	t_struct		list;
 
 	ft_init_struc(&list);
