@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 15:11:33 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/12 18:31:10 by gpaul            ###   ########.fr       */
+/*   Created: 2021/01/12 15:27:20 by gpaul             #+#    #+#             */
+/*   Updated: 2021/01/12 18:20:49 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "../include/ft_printf.h"
 
-int		main(void)
+void	ft_str_c(char format, t_struct *list)
 {
-	char c = 'C';
-	char *str = "salut";
-	unsigned int	i	= 4294967295;
-	//int	*test = &i;
-	int		n = 1000;
-
-	printf ("TEST SIZE %d\n", ft_printf("TEST ==   %c   %%   %d   %X   %x   %s   %i   %u\n",c ,n, n, n, str, 0x12, i));
-	printf ("TRUE SIZE %d\n", printf("TRUE ==   %c   %%   %d   %X   %x   %s   %i   %u\n",c ,n, n, n, str, 0x12, i));
+	if (format == CONVERT[0] || format == CONVERT[8])
+	{
+		ft_putchar_fd(list->c_para, 1);
+		list->nbr_print = list->nbr_print + 1;
+	}
+	else
+	{
+		write(1, list->s_para, ft_strlen(list->s_para));
+		list->nbr_print = list->nbr_print + ft_strlen(list->s_para);
+		free(list->s_para);
+	}
 }

@@ -1,0 +1,84 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_nbr.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
+/*   Updated: 2021/01/12 18:25:08 by gpaul            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "../include/ft_printf.h"
+
+int			ft_print_hex(unsigned int nb, char *base, t_struct *list)
+{
+	char	*temp;
+	int		i;
+	int		size;
+
+	size = size_count(nb) - 1;
+	i = 0;
+	list->nbr_print = list->nbr_print + size - 1;
+	if (!(temp = malloc(sizeof(char) * size)))
+		return (1);
+	while (nb)
+	{
+		temp[i++] = base[nb % 16];
+		nb /= 16;
+	}
+	temp[i] = '\0';
+	write(1, ft_rev(temp), ft_strlen(temp));
+	free(temp);
+	return (0);
+}
+
+void		ft_unsigned_print(unsigned int n, t_struct *list)
+{
+	char	*re;
+	int		i;
+	int		size;
+
+	i = 0;
+	size = size_count(n);
+	list->nbr_print = list->nbr_print + size - 1;
+	if (!(re = malloc(sizeof(char) * size + 1)))
+		return ;
+	if (n == 0)
+	{
+		re[i] = '0';
+		i++;
+	}
+	while (n > 0)
+	{
+		re[i++] = ((n % 10) + '0');
+		n = n / 10;
+	}
+	re[i] = '\0';
+	write(1, ft_rev(re), ft_strlen(re));
+	free(re);
+}
+
+void		ft_hexa_ui(t_struct *list, char format)
+{
+	if (format == CONVERT[5])
+		ft_unsigned_print(list->ui_para, list);
+	else if (format == CONVERT[6])
+		ft_print_hex(list->hexa, list->h_hexa, list);
+	else
+		ft_print_hex(list->hexa, list->m_hexa, list);
+}
+
+void		ft_nb(t_struct *list)
+{
+	int i;
+
+	i = 0;
+	ft_putnbr_fd(list->d_para, 1);
+	while (list->d_para != 0)
+	{
+		list->d_para /= 10;
+		list->nbr_print = list->nbr_print + 1;
+	}
+}
