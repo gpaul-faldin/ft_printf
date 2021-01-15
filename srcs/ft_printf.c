@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 02:08:09 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/15 03:10:55 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_param(char conv, va_list param, t_struct *list)
 		list->vd_ptr = ft_strdup(list->vd_ptr);
 	}
 	else if (conv == CONVERT[3] || conv == CONVERT[4])
-		list->d_para = ft_itoa(va_arg(param, int));							//////////////
+		list->d_para = ft_itoa(va_arg(param, int));
 	else if (conv == CONVERT[6] || conv == CONVERT[7])
 		list->hexa = va_arg(param, unsigned int);
 	else if (conv == CONVERT[5])
@@ -40,7 +40,7 @@ int		ft_print(char format, t_struct *list, t_flags *flags)
 {
 	if (format == CONVERT[0] || format == CONVERT[1] || format == CONVERT[8])
 	{
-		ft_str_c(format, list);
+		ft_str_c(format, list, flags);
 		return (1);
 	}
 	else if (format == CONVERT[3] || format == CONVERT[4])
@@ -59,7 +59,7 @@ int		ft_print(char format, t_struct *list, t_flags *flags)
 
 int		ft_str(const char *format, t_struct *list, va_list param)
 {
-	int i;
+	int		i;
 	t_flags	flags;
 
 	i = 0;
@@ -76,7 +76,7 @@ int		ft_str(const char *format, t_struct *list, va_list param)
 			list->index = i;
 			ft_flags(format, &flags, list, param);
 			i++;
-			while(ft_check_convert(format[i]) == 1)
+			while (ft_check_convert(format[i]) == 1)
 				i++;
 			ft_param(format[i], param, list);
 			ft_print(format[i], list, &flags);

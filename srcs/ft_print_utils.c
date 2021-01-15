@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:29:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 01:01:25 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/15 03:11:54 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,7 @@ int			size_ptr(long long int n)
 	return (res + 1);
 }
 
-
-char	*ft_strdup_flags(char *s1, int index)
+char		*ft_strdup_flags(char *s1, int index)
 {
 	int		size;
 	char	*s2;
