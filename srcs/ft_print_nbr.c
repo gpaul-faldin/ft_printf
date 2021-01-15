@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/12 19:42:20 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/15 02:27:59 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,15 +96,32 @@ void		ft_hexa_ui(t_struct *list, char format)
 		ft_print_hex(list->hexa, list->m_hexa, list);
 }
 
-void		ft_nb(t_struct *list)
+void		ft_nb(t_struct *list, t_flags *flags)
 {
-	int i;
+	int	i;
+	int	size;
 
 	i = 0;
-	ft_putnbr_fd(list->d_para, 1);
-	while (list->d_para != 0)
+	size = ft_strlen(list->d_para);
+	//printf("len == %d\nwidth == %d\n", size, flags->width);
+	if (flags->dot == 0 && flags->width <= size)
 	{
-		list->d_para /= 10;
-		list->nbr_print = list->nbr_print + 1;
+		list->nbr_print = list->nbr_print + size;
+		write(1, list->d_para, size);
 	}
+	else
+	{
+		while (flags->width > size)
+		{
+			if (flags->dot == 1 || flags->zero == 1)
+				write(1, "0", 1);
+			else if (flags->star == 1)
+				write(1, " ", 1);
+			flags->width = flags->width - 1;
+			list->nbr_print = list->nbr_print + 1;
+		}
+		write(1, list->d_para, size);
+		list->nbr_print = list->nbr_print + size;
+	}
+	free(list->d_para);
 }

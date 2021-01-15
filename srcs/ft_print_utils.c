@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:29:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/12 19:42:13 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/15 01:01:25 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,4 +69,26 @@ int			size_ptr(long long int n)
 		res++;
 	}
 	return (res + 1);
+}
+
+
+char	*ft_strdup_flags(char *s1, int index)
+{
+	int		size;
+	char	*s2;
+	int		n;
+
+	size = 0;
+	n = 0;
+	while (ft_check_convert(s1[index + size]) == 1)
+		size++;
+	if (!(s2 = malloc(sizeof(char) * (size + 1))))
+		return (0);
+	while (n < size)
+	{
+		s2[n] = s1[index + n];
+		n++;
+	}
+	s2[n] = '\0';
+	return (s2);
 }
