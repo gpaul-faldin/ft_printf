@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_flags.c                                  :+:      :+:    :+:   */
+/*   ft_print_flags.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 02:32:37 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/15 17:39:19 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,20 @@ void	ft_check_error(t_flags *flags)
 		flags->dot = 0;
 }
 
+int		ft_check_width(int temp, t_flags *flags)
+{
+	if (temp > flags->width)
+		flags->width = temp;
+	return (flags->width);
+}
+
 void	ft_flags(const char *format, t_flags *flags, t_struct *list, va_list param)
 {
 	int		n;
 	int		i;
+	int		temp;
 
+	temp = 0;
 	i = list->index;
 	n = 1;
 	while (ft_check_convert(format[i + n]) == 1)
@@ -59,10 +68,14 @@ void	ft_flags(const char *format, t_flags *flags, t_struct *list, va_list param)
 			if (format[i + n] == '*')
 				flags->width = va_arg(param, int);
 			else
-				flags->width = ft_atoi(ft_strdup_flags((char*)format, i + n));
+				flags->width = ft_check_width(ft_atoi(ft_strdup_flags((char*)format, i + n)), flags);
 			while (ft_check_convert(format[i + n]) == 1)
 				n++;
 			n--;
+		}
+		else if (format[i + n] >= '0' && format[i + n] <= '9')
+		{
+			flags->width = ft_check_width(ft_atoi(ft_strdup_flags((char*)format, i + n)), flags);
 		}
 		else if (format[i + n] == '*')
 		{
@@ -76,4 +89,5 @@ void	ft_flags(const char *format, t_flags *flags, t_struct *list, va_list param)
 		flags->type = format[i + n];
 		ft_check_error(flags);
 	}
+	//printf("width == %d\n", flags->width);
 }

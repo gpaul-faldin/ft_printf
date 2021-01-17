@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 03:12:10 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/15 15:03:32 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,6 @@ int				size_ptr(long long int n);
 void			ft_flags(const char *format, t_flags *flags, t_struct *list, va_list param);
 char			*ft_strdup_flags(char *s1, int index);
 void			ft_init_struct_flags(t_flags *flags);
-
+void			ft_flags_nbr(t_struct *list, t_flags *flags, int size);
 
 #endif

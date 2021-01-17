@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 00:56:13 by gpaul             #+#    #+#              #
-#    Updated: 2021/01/15 02:32:43 by gpaul            ###   ########.fr        #
+#    Updated: 2021/01/15 15:04:13 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ SRC_NAME =		ft_printf.c			\
 				ft_print_char.c		\
 				ft_print_nbr.c		\
 				ft_print_utils.c	\
-				ft_print_flags.c
+				ft_print_flags.c	\
+				ft_flag_nbr.c		\
 
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
