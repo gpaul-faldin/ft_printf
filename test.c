@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:11:33 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 21:23:05 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 22:17:20 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int		main(void)
 	//int		n = 1000;
 	//void	*ptr = &n;
 
-	printf ("TEST SIZE %d\n", ft_printf("%.6d\n", -3));
-	printf ("TRUE SIZE %d\n", printf("%.6d\n", -3));
+	printf ("TEST SIZE %d\n", ft_printf("%10.5d\n", -216));
+	printf ("TRUE SIZE %d\n", printf("%10.5d\n", -216));
 
 }
