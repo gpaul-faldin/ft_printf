@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 17:56:52 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 11:26:45 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ void		ft_nb(t_struct *list, t_flags *flags)
 	{
 		list->nbr_print = list->nbr_print + size;
 		write(1, list->d_para, size);
+		free(list->d_para);
+		return ;
 	}
-	else if ((size != 1  && list->d_para[size] != '0') || flags->width != 0)
-		ft_flags_nbr(list, flags, size);
+	ft_flags_nbr(list, flags, size);
 	free(list->d_para);
 }

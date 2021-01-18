@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 17:39:19 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 10:35:53 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_init_struct_flags(t_flags *flags)
 	flags->star = 0;
 	flags->dot = 0;
 	flags->width = 0;
+	flags->preci = 0;
 	flags->type = 0;
 	flags->error = 0;
 }
@@ -66,16 +67,16 @@ void	ft_flags(const char *format, t_flags *flags, t_struct *list, va_list param)
 			flags->dot = 1;
 			n++;
 			if (format[i + n] == '*')
-				flags->width = va_arg(param, int);
+				flags->preci = va_arg(param, int);
 			else
-				flags->width = ft_check_width(ft_atoi(ft_strdup_flags((char*)format, i + n)), flags);
+				flags->preci = ft_atoi(ft_strdup_flags((char*)format, i + n));
 			while (ft_check_convert(format[i + n]) == 1)
 				n++;
 			n--;
 		}
 		else if (format[i + n] >= '0' && format[i + n] <= '9')
 		{
-			flags->width = ft_check_width(ft_atoi(ft_strdup_flags((char*)format, i + n)), flags);
+			flags->width = ft_atoi(ft_strdup_flags((char*)format, i + n));
 		}
 		else if (format[i + n] == '*')
 		{

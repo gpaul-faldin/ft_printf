@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 15:03:32 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 10:21:38 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef	struct	s_flags
 	int			star;
 	int			dot;
 	int			width;
+	int			preci;
 	char		type;
 	int			error;
 }				t_flags;
