@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 10:35:53 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 16:47:45 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ void	ft_init_struct_flags(t_flags *flags)
 
 void	ft_check_error(t_flags *flags)
 {
-	if (flags->minus == 1 && flags->zero == 1)
-		flags->error = 1;
-	else if (flags->dot == 1 && flags->zero == 1)
+	if (flags->dot == 1 && flags->zero == 1)
 	{
 		if (flags->type == 'i' || flags->type == 'd' || flags->type == 'u' ||
 			flags->type == 'x' || flags->type == 'X')
@@ -90,5 +88,5 @@ void	ft_flags(const char *format, t_flags *flags, t_struct *list, va_list param)
 		flags->type = format[i + n];
 		ft_check_error(flags);
 	}
-	//printf("width == %d\n", flags->width);
+	//printf("width == %d   preci == %d\n", flags->width, flags->preci);
 }
