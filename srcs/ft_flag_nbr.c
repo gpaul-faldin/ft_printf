@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:56:32 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 19:40:36 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 21:30:13 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,27 @@ void	ft_width_preci(t_struct *list, t_flags *flags, int size)
 	list->nbr_print = list->nbr_print + size;
 }
 
+int		ft_flags_nbr_2(t_struct *list, t_flags *flags, int size)
+{
+	if (list->d_para[0] == '-' && (flags->zero == 1 || flags->dot == 1 ||
+		flags->minus == 1))
+	{
+		ft_negati(list, flags);
+		list->nbr_print++;
+		size--;
+	}
+	while (flags->width > size)
+	{
+		if (flags->dot == 1 || flags->zero == 1)
+			write(1, "0", 1);
+		else
+			write(1, " ", 1);
+		flags->width--;
+		list->nbr_print++;
+	}
+	return (size);
+}
+
 void	ft_flags_nbr(t_struct *list, t_flags *flags, int size)
 {
 	if ((size == 1 && list->d_para[0] == '0' && flags->dot == 1 &&
@@ -67,18 +88,7 @@ void	ft_flags_nbr(t_struct *list, t_flags *flags, int size)
 		return ;
 	}
 	if (flags->minus == 0 || flags->dot == 1)
-	{
-		if (list->d_para[0] == '-' && (flags->zero == 1 || flags->dot == 1 ||
-		flags->minus == 1) && ++list->nbr_print && --size)
-			ft_negati(list, flags);
-		while (flags->width-- > size && ++list->nbr_print)
-		{
-			if (flags->dot == 1 || flags->zero == 1)
-				write(1, "0", 1);
-			else
-				write(1, " ", 1);
-		}
-	}
+		size = ft_flags_nbr_2(list, flags, size);
 	write(1, list->d_para, size);
 	if (flags->minus == 1)
 		while (flags->width-- > size && ++list->nbr_print)

@@ -1,26 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_print_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/11 15:11:33 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 21:23:05 by gpaul            ###   ########.fr       */
+/*   Created: 2021/01/18 21:00:00 by gpaul             #+#    #+#             */
+/*   Updated: 2021/01/18 21:00:58 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "include/ft_printf.h"
+#include "../include/ft_printf.h"
 
-int		main(void)
+char	*ft_str_minus(t_struct *list)
 {
-	//char c = 'C';
-	//char *str = "salut";
-	//unsigned int	i	= 4294967295;
-	//int		n = 1000;
-	//void	*ptr = &n;
+	int		size;
+	char	*s2;
+	int		i;
 
-	printf ("TEST SIZE %d\n", ft_printf("%.6d\n", -3));
-	printf ("TRUE SIZE %d\n", printf("%.6d\n", -3));
-
+	i = 0;
+	size = ft_strlen(list->d_para) - 1;
+	if (!(s2 = malloc(sizeof(char) * (size + 1))))
+		return (0);
+	while (list->d_para[1 + i])
+	{
+		s2[i] = list->d_para[1 + i];
+		i++;
+	}
+	s2[i] = '\0';
+	free(list->d_para);
+	return (s2);
 }

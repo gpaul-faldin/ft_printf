@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:20 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/15 03:03:07 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 19:45:38 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	ft_str_c(char format, t_struct *list, t_flags *flags)
 	int size;
 
 	size = 0;
-
 	if (format == CONVERT[0] || format == CONVERT[8])
 	{
 		ft_putchar_fd(list->c_para, 1);

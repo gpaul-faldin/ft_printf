@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 18:43:55 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/18 20:07:17 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,6 @@ void		ft_nb(t_struct *list, t_flags *flags)
 
 	i = 0;
 	size = ft_strlen(list->d_para);
-	//printf("size == %d\n", size);
-
 	if (flags->dot == 0 && flags->width <= size)
 	{
 		list->nbr_print = list->nbr_print + size;
