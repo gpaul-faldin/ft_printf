@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:05:58 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/19 20:11:59 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/19 22:39:11 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,37 @@ void	ft_width_preci_str(t_struct *list, t_flags *flags, int size)
 		list->nbr_print = list->nbr_print + flags->width;
 }
 
+void	ft_null_str(t_struct *list, t_flags *flags, int size)
+{
+	if (flags->preci == 0)
+	{
+		while (flags->width > 0)
+		{
+			write(1, " ", 1);
+			flags->width--;
+			list->nbr_print++;
+		}
+	}
+	else if (flags->preci > size)
+	{
+		write(1, list->s_para, size);
+		list->nbr_print += size;
+	}
+	else
+	{
+		write(1, list->s_para, flags->preci);
+		list->nbr_print += flags->preci;
+	}
+}
+
 void	ft_write_p_w(t_struct *list, t_flags *flags, int size)
 {
-	if (flags->width < size && flags->width != 0)
+	if (ft_strncmp(list->s_para, "(null)", size) == 0 || flags->preci == 0)
+	{
+		ft_null_str(list, flags, size);
+		return ;
+	}
+	else if (flags->width < size && flags->width != 0)
 	{
 		write(1, list->s_para, flags->width);
 		list->nbr_print += flags->width;
