@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/19 17:03:44 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/19 20:17:50 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,15 @@ int		ft_dot(const char *format, t_flags *flags,
 	return (index + n);
 }
 
+int		ft_width(const char *format, t_flags *flags, int i, int n)
+{
+	while (format[i + n + flags->index] >= '0' &&
+		format[i + n + flags->index] <= '9')
+		flags->index++;
+	flags->width = ft_atoi_free(ft_strdup_flags((char*)format, i + n));
+	return (flags->index - 1);
+}
+
 void	ft_flags(const char *format, t_flags *flags,
 	t_struct *list, va_list param)
 {
@@ -71,12 +80,7 @@ void	ft_flags(const char *format, t_flags *flags,
 		else if (format[i + n] == '.' && ++flags->dot && n++)
 			n = ft_dot(format, flags, i + n, param);
 		else if (format[i + n] >= '0' && format[i + n] <= '9')
-		{
-			while (format[i + n + flags->index] >= '0' && format[i + n + flags->index] <= '9')
-				flags->index++;
-			flags->width = ft_atoi_free(ft_strdup_flags((char*)format, i + n));
-			n += (flags->index - 1);
-		}
+			n += ft_width(format, flags, i, n);
 		else if (format[i + n] == '*')
 			flags->width = va_arg(param, int);
 		n++;
