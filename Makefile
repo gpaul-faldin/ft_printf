@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 00:56:13 by gpaul             #+#    #+#              #
-#    Updated: 2021/01/18 21:00:19 by gpaul            ###   ########.fr        #
+#    Updated: 2021/01/19 15:07:05 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,13 +24,13 @@ OBJ_PATH = ./obj
 INC_NAME = ft_printf.h
 
 SRC_NAME =		ft_printf.c			\
+				ft_print_flags.c	\
 				ft_print_char.c		\
+				ft_flag_str.c		\
 				ft_print_nbr.c		\
+				ft_flag_nbr.c		\
 				ft_print_utils.c	\
 				ft_print_utils2.c	\
-				ft_print_flags.c	\
-				ft_flag_nbr.c		\
-
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

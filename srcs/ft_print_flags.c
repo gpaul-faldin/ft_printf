@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 21:37:54 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/19 17:03:44 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	ft_init_struct_flags(t_flags *flags)
 	flags->preci = 0;
 	flags->type = 0;
 	flags->error = 0;
+	flags->index = 0;
 }
 
 int		ft_check_error(t_flags *flags)
@@ -70,7 +71,12 @@ void	ft_flags(const char *format, t_flags *flags,
 		else if (format[i + n] == '.' && ++flags->dot && n++)
 			n = ft_dot(format, flags, i + n, param);
 		else if (format[i + n] >= '0' && format[i + n] <= '9')
-			flags->width = ft_atoi(ft_strdup_flags((char*)format, i + n));
+		{
+			while (format[i + n + flags->index] >= '0' && format[i + n + flags->index] <= '9')
+				flags->index++;
+			flags->width = ft_atoi_free(ft_strdup_flags((char*)format, i + n));
+			n += (flags->index - 1);
+		}
 		else if (format[i + n] == '*')
 			flags->width = va_arg(param, int);
 		n++;

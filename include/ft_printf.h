@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 20:05:06 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/19 17:11:05 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef	struct	s_flags
 	int			preci;
 	char		type;
 	int			error;
+	int			index;
 }				t_flags;
 
 int				ft_printf(const char *format, ...);
@@ -56,5 +57,7 @@ char			*ft_strdup_flags(char *s1, int index);
 void			ft_init_struct_flags(t_flags *flags);
 void			ft_flags_nbr(t_struct *list, t_flags *flags, int size);
 char			*ft_str_minus(t_struct *list);
+void			ft_flag_str(t_struct *list, t_flags *flags, int size);
+int				ft_atoi_free(char *str);
 
 #endif

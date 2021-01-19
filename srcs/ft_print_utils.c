@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:29:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 21:01:04 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/19 17:04:25 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,8 @@ char		*ft_strdup_flags(char *s1, int index)
 
 	size = 0;
 	n = 0;
-	while (ft_check_convert(s1[index + size]) == 1)
-		size++;
+		while (ft_check_convert(s1[index + size]) == 1)
+			size++;
 	if (!(s2 = malloc(sizeof(char) * (size + 1))))
 		return (0);
 	while (n < size)
@@ -91,3 +91,4 @@ char		*ft_strdup_flags(char *s1, int index)
 	s2[n] = '\0';
 	return (s2);
 }
+

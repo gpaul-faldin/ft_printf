@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:20 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 22:43:21 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/19 19:44:59 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	ft_str_c(char format, t_struct *list, t_flags *flags)
 {
 	int size;
 
-	size = ft_strlen(list->s_para);
+	
 	if (format == CONVERT[0] || format == CONVERT[8])
 	{
 		if (flags->width > 0)
@@ -50,17 +50,17 @@ void	ft_str_c(char format, t_struct *list, t_flags *flags)
 	}
 	else
 	{
-		if (flags->width > 0)
+		size = ft_strlen(list->s_para);
+		if ((flags->width == 0 && flags->dot == 0 && flags->minus == 0))
 		{
-			size++;
-			write(1, list->s_para, size - flags->width);
+			if (list->s_para != NULL)
+			{
+				write(1, list->s_para, size);
+				list->nbr_print += size;
+			}
 		}
 		else
-			write(1, list->s_para, size);
-		if (flags->width > 0)
-			list->nbr_print = list->nbr_print + (size - flags->width);
-		else
-			list->nbr_print = list->nbr_print + size;
+			ft_flag_str(list, flags, size);
 		free(list->s_para);
 	}
 }

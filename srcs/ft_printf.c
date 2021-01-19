@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/18 15:50:59 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/19 18:02:08 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ void	ft_param(char conv, va_list param, t_struct *list)
 	else if (conv == CONVERT[1])
 	{
 		list->s_para = va_arg(param, char *);
-		list->s_para = ft_strdup(list->s_para);
+		if (list->s_para != NULL)
+			list->s_para = ft_strdup(list->s_para);
+		else
+			list->s_para = ft_strdup("(null)");
 	}
 	else if (conv == CONVERT[2])
 	{
