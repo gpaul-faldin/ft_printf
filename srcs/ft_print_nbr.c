@@ -6,27 +6,29 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 18:22:44 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 21:28:15 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-int			ft_print_hex(unsigned int nb, char *base, t_struct *list)
+char		*ft_print_hex(char *base, t_struct *list)
 {
-	char	*temp;
-	int		i;
-	int		size;
+	char			*temp;
+	int				i;
+	int				size;
 
-	size = size_count(nb) - 1;
+	size = size_count(list->hexa) - 1;
 	i = 0;
-	list->nbr_print = list->nbr_print + size - 1;
-	if (!(temp = malloc(sizeof(char) * size)))
-		return (1);
-	while (nb)
+	if (!(temp = malloc(sizeof(char) * size + 1)))
+		return (0);
+	if (list->hexa == 0 && list->nbr_print++)
+		temp[i++] = '0';
+	while (list->hexa)
 	{
-		temp[i++] = base[nb % 16];
-		nb /= 16;
+		temp[i++] = base[list->hexa % 16];
+		list->hexa /= 16;
+		list->nbr_print++;
 	}
 	temp[i] = '\0';
 	write(1, ft_rev(temp), ft_strlen(temp));
@@ -42,13 +44,13 @@ int			ft_print_ptr(long long int nb, char *base, t_struct *list)
 
 	size = size_ptr(nb) - 1;
 	i = 0;
-	list->nbr_print = list->nbr_print + size - 1;
 	if (!(temp = malloc(sizeof(char) * size)))
 		return (1);
 	while (nb)
 	{
 		temp[i++] = base[nb % 16];
 		nb /= 16;
+		list->nbr_print++;
 	}
 	temp[i] = '\0';
 	write(1, "0x", 2);
@@ -79,10 +81,21 @@ void		ft_hexa_ui(t_struct *list, char format, t_flags *flags)
 	}
 	else if (format == CONVERT[2])
 		ft_print_ptr((long long int)list->vd_ptr, list->h_hexa, list);
-	else if (format == CONVERT[6])
-		ft_print_hex(list->hexa, list->h_hexa, list);
 	else
-		ft_print_hex(list->hexa, list->m_hexa, list);
+	{
+		if (format == CONVERT[6] && flags->dot == 0 &&
+			flags->width == 0 && flags->preci == 0)
+		{
+			ft_print_hex(list->h_hexa, list);
+		}
+		else if (format == CONVERT[7] && flags->dot == 0 &&
+			flags->width == 0 && flags->preci == 0)
+		{
+			ft_print_hex(list->m_hexa, list);
+		}
+		else
+			ft_flag_hexa(list, flags);
+	}
 }
 
 void		ft_nb(t_struct *list, t_flags *flags)

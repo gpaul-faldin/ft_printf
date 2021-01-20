@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 18:14:02 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 21:28:25 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,8 @@ void			ft_flag_str(t_struct *list, t_flags *flags, int size);
 int				ft_atoi_free(char *str);
 void			ft_flag_ui(t_struct *list, t_flags *flags, int size);
 char			*ft_itoa_ui(unsigned int n);
+void			ft_flag_hexa(t_struct *list, t_flags *flags);
+char			*ft_print_hex(char *base, t_struct *list);
+char			*ft_convert_hex(char *base, t_struct *list);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/08/26 00:56:13 by gpaul             #+#    #+#              #
-#    Updated: 2021/01/20 18:05:09 by gpaul            ###   ########.fr        #
+#    Updated: 2021/01/20 19:23:15 by gpaul            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC_NAME =		ft_printf.c			\
 				ft_print_nbr.c		\
 				ft_flag_nbr.c		\
 				ft_flag_ui.c		\
+				ft_flag_hex.c		\
 				ft_print_utils.c	\
 				ft_print_utils2.c	\
 				ft_itoa_ui.c		\

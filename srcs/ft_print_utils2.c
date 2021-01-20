@@ -6,13 +6,13 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 21:00:00 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 15:23:01 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 21:30:41 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
-char	*ft_str_minus(t_struct *list)
+char		*ft_str_minus(t_struct *list)
 {
 	int		size;
 	char	*s2;
@@ -32,7 +32,7 @@ char	*ft_str_minus(t_struct *list)
 	return (s2);
 }
 
-int		ft_atoi_free(char *str)
+int			ft_atoi_free(char *str)
 {
 	int	i;
 	int	sign;
@@ -59,4 +59,25 @@ int		ft_atoi_free(char *str)
 		return (-re);
 	else
 		return (re);
+}
+
+char		*ft_convert_hex(char *base, t_struct *list)
+{
+	char			*temp;
+	int				i;
+	int				size;
+
+	size = size_count(list->hexa) - 1;
+	i = 0;
+	if (!(temp = malloc(sizeof(char) * size + 1)))
+		return (0);
+	if (list->hexa == 0)
+		temp[i++] = '0';
+	while (list->hexa)
+	{
+		temp[i++] = base[list->hexa % 16];
+		list->hexa /= 16;
+	}
+	temp[i] = '\0';
+	return (ft_rev(temp));
 }
