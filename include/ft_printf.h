@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/19 17:11:05 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 18:14:02 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef	struct	s_struct
 	int				nbr_print;
 	int				c_para;
 	char			*s_para;
-	unsigned int	ui_para;
+	char			*ui_para;
 	char			*d_para;
 	char			*m_hexa;
 	char			*h_hexa;
@@ -45,7 +45,7 @@ typedef	struct	s_flags
 }				t_flags;
 
 int				ft_printf(const char *format, ...);
-void			ft_hexa_ui(t_struct *list, char format);
+void			ft_hexa_ui(t_struct *list, char format, t_flags *flags);
 void			ft_nb(t_struct *list, t_flags *flags);
 char			*ft_rev(char *re);
 void			ft_str_c(char format, t_struct *list, t_flags *flags);
@@ -59,5 +59,7 @@ void			ft_flags_nbr(t_struct *list, t_flags *flags, int size);
 char			*ft_str_minus(t_struct *list);
 void			ft_flag_str(t_struct *list, t_flags *flags, int size);
 int				ft_atoi_free(char *str);
+void			ft_flag_ui(t_struct *list, t_flags *flags, int size);
+char			*ft_itoa_ui(unsigned int n);
 
 #endif

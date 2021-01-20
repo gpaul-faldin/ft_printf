@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/19 20:17:50 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 15:22:42 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_dot(const char *format, t_flags *flags,
 	if (format[index] == '*')
 		flags->preci = va_arg(param, int);
 	else
-		flags->preci = ft_atoi(ft_strdup_flags((char*)format, index));
+		flags->preci = ft_atoi_free(ft_strdup_flags((char*)format, index));
 	while (ft_check_convert(format[index + n + 1]) == 1)
 		n++;
 	return (index + n);

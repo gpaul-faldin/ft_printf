@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/19 21:46:22 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 18:22:00 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ void	ft_param(char conv, va_list param, t_struct *list)
 		list->vd_ptr = ft_strdup(list->vd_ptr);
 	}
 	else if (conv == CONVERT[3] || conv == CONVERT[4])
-		list->d_para = ft_itoa(va_arg(param, int));
+		list->d_para = ft_strdup(ft_itoa(va_arg(param, int)));
 	else if (conv == CONVERT[6] || conv == CONVERT[7])
 		list->hexa = va_arg(param, unsigned int);
 	else if (conv == CONVERT[5])
-		list->ui_para = va_arg(param, unsigned int);
+		list->ui_para = ft_strdup(ft_itoa_ui(va_arg(param, unsigned int)));
 	else if (conv == CONVERT[8])
 		list->c_para = 37;
 }
@@ -54,7 +54,7 @@ int		ft_print(char format, t_struct *list, t_flags *flags)
 	else if (format == CONVERT[6] || format == CONVERT[7] ||
 		format == CONVERT[5] || format == CONVERT[2])
 	{
-		ft_hexa_ui(list, format);
+		ft_hexa_ui(list, format, flags);
 		return (1);
 	}
 	return (0);
@@ -106,10 +106,12 @@ int		ft_printf(const char *format, ...)
 {
 	va_list			param;
 	t_struct		list;
+	int				i;
 
 	ft_init_struc(&list);
 	va_start(param, format);
 	ft_str(format, &list, param);
 	va_end(param);
-	return (list.nbr_print);
+	i = list.nbr_print;
+	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/19 15:08:30 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 18:22:44 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,36 +58,25 @@ int			ft_print_ptr(long long int nb, char *base, t_struct *list)
 	return (0);
 }
 
-void		ft_unsigned_print(unsigned int n, t_struct *list)
+void		ft_unsigned_print(t_struct *list)
 {
-	char	*re;
-	int		i;
 	int		size;
 
-	i = 0;
-	size = size_count(n);
-	list->nbr_print = list->nbr_print + size - 1;
-	if (!(re = malloc(sizeof(char) * size + 1)))
-		return ;
-	if (n == 0)
-	{
-		re[i] = '0';
-		i++;
-	}
-	while (n > 0)
-	{
-		re[i++] = ((n % 10) + '0');
-		n = n / 10;
-	}
-	re[i] = '\0';
-	write(1, ft_rev(re), ft_strlen(re));
-	free(re);
+	size = ft_strlen(list->ui_para);
+	write(1, list->ui_para, size);
+	list->nbr_print += size;
 }
 
-void		ft_hexa_ui(t_struct *list, char format)
+void		ft_hexa_ui(t_struct *list, char format, t_flags *flags)
 {
 	if (format == CONVERT[5])
-		ft_unsigned_print(list->ui_para, list);
+	{
+		if (flags->dot == 0 && flags->width <= (int)ft_strlen(list->ui_para))
+			ft_unsigned_print(list);
+		else
+			ft_flag_ui(list, flags, (int)ft_strlen(list->ui_para));
+		free(list->ui_para);
+	}
 	else if (format == CONVERT[2])
 		ft_print_ptr((long long int)list->vd_ptr, list->h_hexa, list);
 	else if (format == CONVERT[6])
