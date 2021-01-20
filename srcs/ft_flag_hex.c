@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 19:22:55 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 21:30:11 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 21:45:39 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void			ft_flag_hexa(t_struct *list, t_flags *flags)
 			ft_width_preci(list, flags, size, cpy);
 		else
 			ft_para_zero(flags, list);
+		free(cpy);
 		return ;
 	}
 	if (flags->minus == 0 || flags->dot == 1)
@@ -100,4 +101,5 @@ void			ft_flag_hexa(t_struct *list, t_flags *flags)
 		while (flags->width-- > size && ++list->nbr_print)
 			write(1, " ", 1);
 	list->nbr_print = list->nbr_print + size;
+	free(cpy);
 }
