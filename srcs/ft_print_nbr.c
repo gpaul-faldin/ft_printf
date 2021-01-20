@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 21:28:15 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 21:38:36 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,17 @@ char		*ft_print_hex(char *base, t_struct *list)
 	int				i;
 	int				size;
 
-	size = size_count(list->hexa) - 1;
+	size = size_count(list->hexa);
+	if (list->hexa != 0 || list->hexa != -0)
+		size--;
 	i = 0;
 	if (!(temp = malloc(sizeof(char) * size + 1)))
 		return (0);
-	if (list->hexa == 0 && list->nbr_print++)
+	if (list->hexa == 0)
+	{
 		temp[i++] = '0';
+		list->nbr_print++;
+	}
 	while (list->hexa)
 	{
 		temp[i++] = base[list->hexa % 16];

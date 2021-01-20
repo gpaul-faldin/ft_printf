@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:11:33 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 20:09:04 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 21:39:16 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ int		main(void)
 
 	//char *hide = "hi low\0don't print me lol\0";
 
-	printf ("TEST SIZE %d\n", ft_printf("%7x\n", 33));
-	printf ("TRUE SIZE %d\n", printf("%7x\n", 33));
+	printf ("TEST SIZE %d\n", ft_printf("%x\n", -0));
+	printf ("TRUE SIZE %d\n", printf("%x\n", -0));
 	//ft_printf("this %u number", 0);
 	//printf("\n");
 	//printf("%7.7s%3.7s", "hello", "world");
