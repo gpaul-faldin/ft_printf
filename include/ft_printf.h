@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 21:28:25 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 22:39:11 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef	struct	s_struct
 	char			*m_hexa;
 	char			*h_hexa;
 	unsigned int	hexa;
-	void			*vd_ptr;
+	int				vd_ptr;
 }				t_struct;
 
 typedef	struct	s_flags
@@ -51,8 +51,8 @@ char			*ft_rev(char *re);
 void			ft_str_c(char format, t_struct *list, t_flags *flags);
 int				size_count(unsigned int n);
 int				ft_check_convert(char c);
-int				size_ptr(long long int n);
-void			ft_flags(const char *format, t_flags *flags, t_struct *list, va_list param);
+void			ft_flags(const char *format, t_flags *flags,
+				t_struct *list, va_list param);
 char			*ft_strdup_flags(char *s1, int index);
 void			ft_init_struct_flags(t_flags *flags);
 void			ft_flags_nbr(t_struct *list, t_flags *flags, int size);

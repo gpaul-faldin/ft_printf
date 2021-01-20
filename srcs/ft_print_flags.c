@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 15:22:42 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 22:51:36 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,15 +26,7 @@ void	ft_init_struct_flags(t_flags *flags)
 
 int		ft_check_error(t_flags *flags)
 {
-	if (flags->dot == 1 && flags->zero == 1)
-	{
-		if (flags->type == 'i' || flags->type == 'd' || flags->type == 'u' ||
-			flags->type == 'x' || flags->type == 'X')
-		{
-			flags->zero = 0;
-		}
-	}
-	else if (flags->dot == 1 && flags->type == 'c')
+	if (flags->dot == 1 && flags->type == 'c')
 		flags->dot = 0;
 	return (1);
 }
@@ -73,6 +65,7 @@ void	ft_flags(const char *format, t_flags *flags,
 	n = 1;
 	while (ft_check_convert(format[i + n]) == 1)
 	{
+		
 		if (format[i + n] == '0')
 			flags->zero = 1;
 		else if (format[i + n] == '-')
@@ -84,6 +77,7 @@ void	ft_flags(const char *format, t_flags *flags,
 		else if (format[i + n] == '*')
 			flags->width = va_arg(param, int);
 		n++;
+
 	}
 	if (n != 0 && ft_check_error(flags) == 1)
 		flags->type = format[i + n];

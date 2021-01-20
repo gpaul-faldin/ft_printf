@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:20 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 18:21:14 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 22:51:45 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ void	ft_char_flag(t_struct *list, t_flags *flags)
 	{
 		while (flags->width > 1)
 		{
-			write(1, " ", 1);
+			if (flags->zero == 0)
+				write(1, " ", 1);
+			else
+				write(1, "0", 1);
 			flags->width--;
 			list->nbr_print++;
 		}

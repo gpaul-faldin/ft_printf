@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 21:38:36 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 22:43:27 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,28 @@ char		*ft_print_hex(char *base, t_struct *list)
 	return (0);
 }
 
-int			ft_print_ptr(long long int nb, char *base, t_struct *list)
+int			ft_print_ptr(int nb, char *base, t_struct *list)
 {
 	char	*temp;
 	int		i;
 	int		size;
 
-	size = size_ptr(nb) - 1;
+	size = size_count(nb) - 1;
 	i = 0;
 	if (!(temp = malloc(sizeof(char) * size)))
 		return (1);
+	if (nb == 0)
+		temp[i++] = '0';
 	while (nb)
 	{
 		temp[i++] = base[nb % 16];
 		nb /= 16;
-		list->nbr_print++;
 	}
 	temp[i] = '\0';
-	write(1, "0x", 2);
-	write(1, ft_rev(temp), ft_strlen(temp));
+	temp = ft_strjoin("0x", ft_rev(temp));
+	write(1, temp, ft_strlen(temp));
+	list->nbr_print += ft_strlen(temp);
 	free(temp);
-	free(list->vd_ptr);
 	return (0);
 }
 
@@ -85,19 +86,18 @@ void		ft_hexa_ui(t_struct *list, char format, t_flags *flags)
 		free(list->ui_para);
 	}
 	else if (format == CONVERT[2])
-		ft_print_ptr((long long int)list->vd_ptr, list->h_hexa, list);
+	{
+		if (flags->dot == 0 && flags->width == 0 && flags->preci == 0)
+			ft_print_ptr((int)list->vd_ptr, list->h_hexa, list);
+	}
 	else
 	{
 		if (format == CONVERT[6] && flags->dot == 0 &&
 			flags->width == 0 && flags->preci == 0)
-		{
 			ft_print_hex(list->h_hexa, list);
-		}
 		else if (format == CONVERT[7] && flags->dot == 0 &&
 			flags->width == 0 && flags->preci == 0)
-		{
 			ft_print_hex(list->m_hexa, list);
-		}
 		else
 			ft_flag_hexa(list, flags);
 	}

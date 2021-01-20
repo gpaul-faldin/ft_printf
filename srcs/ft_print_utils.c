@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:29:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/19 20:12:28 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/20 22:39:02 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,6 @@ char		*ft_rev(char *re)
 }
 
 int			size_count(unsigned int n)
-{
-	int		res;
-
-	res = 0;
-	while (n != 0)
-	{
-		n /= 10;
-		res++;
-	}
-	return (res + 1);
-}
-
-int			size_ptr(long long int n)
 {
 	int		res;
 
