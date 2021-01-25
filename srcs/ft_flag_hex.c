@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 19:22:55 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/21 15:28:14 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/25 19:49:59 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static int		ft_flags_hexa_2(t_struct *list, t_flags *flags, int size)
 	return (size);
 }
 
-void			ft_flag_hexa(t_struct *list, t_flags *flags)
+char			*ft_flag_hexa(t_struct *list, t_flags *flags)
 {
 	char	*cpy;
 	int		size;
@@ -91,8 +91,7 @@ void			ft_flag_hexa(t_struct *list, t_flags *flags)
 			ft_width_preci(list, flags, size, cpy);
 		else
 			ft_para_zero(flags, list);
-		free(cpy);
-		return ;
+		return (cpy);
 	}
 	if (flags->minus == 0 || flags->dot == 1)
 		size = ft_flags_hexa_2(list, flags, size);
@@ -101,5 +100,5 @@ void			ft_flag_hexa(t_struct *list, t_flags *flags)
 		while (flags->width-- > size && ++list->nbr_print)
 			write(1, " ", 1);
 	list->nbr_print = list->nbr_print + size;
-	free(cpy);
+	return (cpy);
 }

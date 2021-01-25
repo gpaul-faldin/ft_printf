@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/22 17:45:55 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/25 21:56:37 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef	struct	s_flags
 	int				width;
 	int				preci;
 	char			type;
-	int				error;
+	int				size;
 	int				index;
 }				t_flags;
 
@@ -61,10 +61,11 @@ void			ft_flag_str(t_struct *list, t_flags *flags, int size);
 int				ft_atoi_free(char *str);
 void			ft_flag_ui(t_struct *list, t_flags *flags, int size);
 char			*ft_itoa_ui(unsigned int n);
-void			ft_flag_hexa(t_struct *list, t_flags *flags);
+char			*ft_flag_hexa(t_struct *list, t_flags *flags);
 char			*ft_print_hex(char *base, t_struct *list);
 char			*ft_convert_hex(char *base, t_struct *list);
 char			*ft_convert_ptr(long long int nb, t_struct *list, t_flags *flags);
-void			ft_flag_ptr(t_struct *list, t_flags *flags);
+char			*ft_flag_ptr(t_struct *list, t_flags *flags);
+char			*ft_base(t_flags *flags, t_struct *list);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 19:25:35 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/25 21:55:42 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,18 +90,15 @@ void		ft_hexa_ui(t_struct *list, char format, t_flags *flags)
 		if (flags->dot == 0 && flags->width == 0 && flags->preci == 0)
 			ft_print_ptr((long long int)list->vd_ptr, list->h_hexa, list);
 		else
-			ft_flag_ptr(list, flags);
+			free(ft_flag_ptr(list, flags));
 	}
 	else
 	{
-		if (format == CONVERT[6] && flags->dot == 0 &&
+		if ((format == CONVERT[6] || format == CONVERT[7]) && flags->dot == 0 &&
 			flags->width == 0 && flags->preci == 0)
-			ft_print_hex(list->h_hexa, list);
-		else if (format == CONVERT[7] && flags->dot == 0 &&
-			flags->width == 0 && flags->preci == 0)
-			ft_print_hex(list->m_hexa, list);
+			ft_print_hex(ft_base(flags, list), list);
 		else
-			ft_flag_hexa(list, flags);
+			free(ft_flag_hexa(list, flags));
 	}
 }
 

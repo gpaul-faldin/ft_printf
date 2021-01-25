@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 21:00:00 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 19:33:41 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/25 21:57:04 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,12 +94,20 @@ char		*ft_convert_ptr(long long int nb, t_struct *list, t_flags *flags)
 		return (0);
 	if (nb == 0 && (flags->preci != 0 ||
 		(flags->width != 0 && flags->dot == 0)))
-		temp[i++] = '0'; 
+		temp[i++] = '0';
 	while (nb)
 	{
 		temp[i++] = list->h_hexa[nb % 16];
 		nb /= 16;
 	}
 	temp[i] = '\0';
-	return (ft_strjoin("0x", ft_rev(temp)));
+	return (ft_rev(temp));
+}
+
+char		*ft_base(t_flags *flags, t_struct *list)
+{
+	if (flags->type == 'x')
+		return (list->h_hexa);
+	else
+		return (list->m_hexa);
 }

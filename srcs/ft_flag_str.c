@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:05:58 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/22 18:45:04 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/25 19:38:42 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,9 @@ void	ft_width_preci_str(t_struct *list, t_flags *flags, int size)
 		temp = ft_neg(flags);
 	else
 		temp = flags->width - flags->preci;
-	while (temp > 0 && flags->minus == 0)
-	{
+	while (temp > 0 && flags->minus == 0 && --flags->width &&
+	++list->nbr_print && temp--)
 		write(1, " ", 1);
-		flags->width--;
-		list->nbr_print++;
-		temp--;
-	}
 	if (temp < 0 || flags->width - temp > size || flags->preci < 0)
 		write(1, list->s_para, size);
 	else
