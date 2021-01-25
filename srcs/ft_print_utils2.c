@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/18 21:00:00 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/22 16:10:52 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/25 19:33:41 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,5 @@ char		*ft_convert_ptr(long long int nb, t_struct *list, t_flags *flags)
 		nb /= 16;
 	}
 	temp[i] = '\0';
-	//if (flags->width > (int)ft_strlen(temp))
-		return (ft_strjoin("0x", ft_rev(temp)));
-//	else
-	//	return (ft_rev(temp));
+	return (ft_strjoin("0x", ft_rev(temp)));
 }

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 19:22:33 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/25 19:32:48 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,12 @@ void	ft_init_struct_flags(t_flags *flags)
 
 int		ft_check_error(t_flags *flags)
 {
-	//if (flags->width < 0)
-	//{
-	//	if (flags->minus == 0)
-	//		flags->minus = 1;
-	//	flags->width = -flags->width;
-	//}
-	//if (flags->preci < 0 && flags->dot == 0)
-	//{
-	//	if (flags->minus == 0)
-	//		flags->minus = 1;
-	//	flags->preci = -flags->preci;
-	//}
+	if (flags->width < 0)
+	{
+		if (flags->minus == 0)
+			flags->minus = 1;
+		flags->width = -flags->width;
+	}
 	if (flags->dot == 1 && flags->type == 'c')
 		flags->dot = 0;
 	return (1);
