@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 22:43:27 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/22 14:35:48 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*ft_print_hex(char *base, t_struct *list)
 	return (0);
 }
 
-int			ft_print_ptr(int nb, char *base, t_struct *list)
+int			ft_print_ptr(long long int nb, char *base, t_struct *list)
 {
 	char	*temp;
 	int		i;
@@ -88,7 +88,9 @@ void		ft_hexa_ui(t_struct *list, char format, t_flags *flags)
 	else if (format == CONVERT[2])
 	{
 		if (flags->dot == 0 && flags->width == 0 && flags->preci == 0)
-			ft_print_ptr((int)list->vd_ptr, list->h_hexa, list);
+			ft_print_ptr((long long int)list->vd_ptr, list->h_hexa, list);
+		else
+			ft_flag_ptr(list, flags);
 	}
 	else
 	{

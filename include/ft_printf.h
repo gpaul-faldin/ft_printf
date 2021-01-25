@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 22:39:11 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/22 17:45:55 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,19 @@ typedef	struct	s_struct
 	char			*m_hexa;
 	char			*h_hexa;
 	unsigned int	hexa;
-	int				vd_ptr;
+	long long int		vd_ptr;
 }				t_struct;
 
 typedef	struct	s_flags
 {
-	int			zero;
-	int			minus;
-	int			dot;
-	int			width;
-	int			preci;
-	char		type;
-	int			error;
-	int			index;
+	int				zero;
+	int				minus;
+	int				dot;
+	int				width;
+	int				preci;
+	char			type;
+	int				error;
+	int				index;
 }				t_flags;
 
 int				ft_printf(const char *format, ...);
@@ -64,5 +64,7 @@ char			*ft_itoa_ui(unsigned int n);
 void			ft_flag_hexa(t_struct *list, t_flags *flags);
 char			*ft_print_hex(char *base, t_struct *list);
 char			*ft_convert_hex(char *base, t_struct *list);
+char			*ft_convert_ptr(long long int nb, t_struct *list, t_flags *flags);
+void			ft_flag_ptr(t_struct *list, t_flags *flags);
 
 #endif

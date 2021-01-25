@@ -6,17 +6,39 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:05:58 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/20 15:18:15 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/22 18:45:04 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_printf.h"
 
+int		ft_neg(t_flags *flags)
+{
+	if (flags->width < 0)
+	{
+		flags->width = -flags->width;
+		if (flags->minus == 0)
+			flags->minus = 1;
+	}
+	if (flags->preci < 0)
+	{
+		if (flags->minus == 0)
+			flags->minus = 1;
+	}
+	if (flags->preci < 0)
+		return (flags->width - (-flags->preci) - 1);
+	else
+		return (flags->width - flags->preci);
+}
+
 void	ft_width_preci_str(t_struct *list, t_flags *flags, int size)
 {
 	int	temp;
 
-	temp = flags->width - flags->preci;
+	if (flags->width < 0 || flags->preci < 0)
+		temp = ft_neg(flags);
+	else
+		temp = flags->width - flags->preci;
 	while (temp > 0 && flags->minus == 0)
 	{
 		write(1, " ", 1);
@@ -24,7 +46,7 @@ void	ft_width_preci_str(t_struct *list, t_flags *flags, int size)
 		list->nbr_print++;
 		temp--;
 	}
-	if (temp < 0 || flags->width - temp > size)
+	if (temp < 0 || flags->width - temp > size || flags->preci < 0)
 		write(1, list->s_para, size);
 	else
 		write(1, list->s_para, flags->width - temp);
@@ -99,12 +121,12 @@ void	ft_flag_str(t_struct *list, t_flags *flags, int size)
 		flags->width--;
 		list->nbr_print++;
 	}
-	if (flags->preci > 0 && flags->width > 0)
+	if (flags->preci != 0 && flags->width != 0)
 	{
 		ft_width_preci_str(list, flags, size);
 		return ;
 	}
-	if (flags->dot == 0)
+	if (flags->dot == 0 || flags->preci < 0)
 		write(1, list->s_para, size);
 	else
 	{

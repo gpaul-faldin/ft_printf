@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag_hex.c                                      :+:      :+:    :+:   */
+/*   ft_flag_ptr.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/01/20 19:22:55 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/21 15:28:14 by gpaul            ###   ########.fr       */
+/*   Created: 2021/01/21 15:13:07 by gpaul             #+#    #+#             */
+/*   Updated: 2021/01/22 14:25:59 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,13 @@ static void		ft_width_preci(t_struct *list, t_flags *flags,
 	list->nbr_print = list->nbr_print + size;
 }
 
-static int		ft_flags_hexa_2(t_struct *list, t_flags *flags, int size)
+static int		ft_flags_ptr_2(t_struct *list, t_flags *flags, int size)
 {
 	if (flags->width != 0)
 	{
 		while (flags->width > size)
 		{
-			if (flags->dot == 1 || flags->zero == 1)
+			if (flags->zero == 1)
 				write(1, "0", 1);
 			else
 				write(1, " ", 1);
@@ -63,7 +63,7 @@ static int		ft_flags_hexa_2(t_struct *list, t_flags *flags, int size)
 	{
 		while (flags->preci > size)
 		{
-			if (flags->dot == 1 || flags->zero == 1)
+			if (flags->zero == 1)
 				write(1, "0", 1);
 			else
 				write(1, " ", 1);
@@ -74,15 +74,13 @@ static int		ft_flags_hexa_2(t_struct *list, t_flags *flags, int size)
 	return (size);
 }
 
-void			ft_flag_hexa(t_struct *list, t_flags *flags)
+void			ft_flag_ptr(t_struct *list, t_flags *flags)
 {
 	char	*cpy;
 	int		size;
 
-	if (flags->type == 'x')
-		cpy = ft_convert_hex(list->h_hexa, list);
-	else
-		cpy = ft_convert_hex(list->m_hexa, list);
+	cpy = ft_convert_ptr(list->vd_ptr, list, flags);
+	//printf("cpy == %s\n", cpy);
 	size = ft_strlen(cpy);
 	if ((size == 1 && cpy[0] == '0' && flags->dot == 1 &&
 	flags->preci == 0) || (flags->preci > 0 && flags->width > 0))
@@ -95,7 +93,7 @@ void			ft_flag_hexa(t_struct *list, t_flags *flags)
 		return ;
 	}
 	if (flags->minus == 0 || flags->dot == 1)
-		size = ft_flags_hexa_2(list, flags, size);
+		size = ft_flags_ptr_2(list, flags, size);
 	write(1, cpy, size);
 	if (flags->minus == 1)
 		while (flags->width-- > size && ++list->nbr_print)
@@ -103,3 +101,4 @@ void			ft_flag_hexa(t_struct *list, t_flags *flags)
 	list->nbr_print = list->nbr_print + size;
 	free(cpy);
 }
+
