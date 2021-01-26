@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 19:22:55 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 19:49:59 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/26 01:27:24 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static void		ft_para_zero(t_flags *flags, t_struct *list)
 {
 	while (flags->width)
 	{
-		write(1, " ", 1);
+		if (flags->zero == 0)
+			write(1, " ", 1);
 		flags->width = flags->width - 1;
 		list->nbr_print = list->nbr_print + 1;
 	}
@@ -47,11 +48,11 @@ static void		ft_width_preci(t_struct *list, t_flags *flags,
 
 static int		ft_flags_hexa_2(t_struct *list, t_flags *flags, int size)
 {
-	if (flags->width != 0)
+	if (flags->width != 0 && flags->minus == 0)
 	{
 		while (flags->width > size)
 		{
-			if (flags->dot == 1 || flags->zero == 1)
+			if (flags->zero == 1)
 				write(1, "0", 1);
 			else
 				write(1, " ", 1);

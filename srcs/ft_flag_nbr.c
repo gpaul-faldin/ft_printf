@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/15 14:56:32 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 19:29:14 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/26 01:28:00 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,12 @@ void	ft_width_preci(t_struct *list, t_flags *flags, int size)
 
 int		ft_flags_nbr_2(t_struct *list, t_flags *flags, int size)
 {
-	if (list->d_para[0] == '-' && (flags->zero == 1 || flags->dot == 1 ||
-		flags->minus == 1))
+	if (list->d_para[0] == '-' && (flags->zero == 1 ||
+	(flags->dot == 1 && flags->preci != 0) || flags->minus == 1))
 		size = ft_negati(list, flags, size);
-	while (flags->width > size)
+	while (flags->width > size && flags->minus == 0)
 	{
-		if (flags->dot == 1 || flags->zero == 1)
+		if ((flags->dot == 1 && flags->preci == -1) || flags->zero == 1)
 			write(1, "0", 1);
 		else
 			write(1, " ", 1);
