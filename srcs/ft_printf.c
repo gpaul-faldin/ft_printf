@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:40:03 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 19:15:07 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ int		ft_str(const char *format, t_struct *list, va_list param)
 			list->index = i;
 			ft_flags(format, &flags, list, param);
 			i++;
-			while (ft_check_convert(format[i]) == 1)
+			while (ft_check_convert(format[i]) == 0)
 				i++;
 			ft_param(format[i], param, list);
 			ft_print(format[i], list, &flags);
@@ -93,7 +93,7 @@ void	ft_init_struc(t_struct *list)
 	list->s_para = 0;
 	list->d_para = 0;
 	list->ui_para = 0;
-	list->X_hexa = "0123456789ABCDEF";
+	list->upper_hexa = "0123456789ABCDEF";
 	list->x_hexa = "0123456789abcdef";
 	list->hexa = 0;
 	list->vd_ptr = 0;

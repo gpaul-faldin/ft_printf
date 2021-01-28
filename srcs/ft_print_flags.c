@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:41:13 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 19:12:03 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_init_struct_flags(t_flags *flags)
 	flags->index = 0;
 }
 
-int		ft_check_error(t_flags *flags)
+int		ft_check_error(t_flags *flags, char format)
 {
 	if (flags->width < 0)
 	{
@@ -34,6 +34,9 @@ int		ft_check_error(t_flags *flags)
 	}
 	if (flags->dot == 1 && flags->type == 'c')
 		flags->dot = 0;
+	if (flags->zero == 1 && flags->dot == 1 && flags->preci >= 0 &&
+	ft_check_convert(format) == 2)
+		flags->zero = 0;
 	return (1);
 }
 
@@ -47,7 +50,7 @@ int		ft_dot(const char *format, t_flags *flags,
 		flags->preci = va_arg(param, int);
 	else
 		flags->preci = ft_atoi_free(ft_strdup_flags((char*)format, index));
-	while (ft_check_convert(format[index + n + 1]) == 1)
+	while (ft_check_convert(format[index + n + 1]) == 0)
 		n++;
 	return (n);
 }
@@ -69,7 +72,7 @@ void	ft_flags(const char *format, t_flags *flags,
 
 	i = list->index;
 	n = 1;
-	while (ft_check_convert(format[i + n]) == 1 && format[i + n])
+	while (ft_check_convert(format[i + n]) == 0 && format[i + n])
 	{
 		if (format[i + n] == '0')
 			flags->zero = 1;
@@ -77,12 +80,15 @@ void	ft_flags(const char *format, t_flags *flags,
 			flags->minus = 1;
 		else if (format[i + n] == '.' && ++flags->dot && n++)
 			n += ft_dot(format, flags, i + n, param);
-		else if (format[i + n] >= '0' && format[i + n] <= '9')
+		else if (format[i + n] >= '1' && format[i + n] <= '9')
 			n += ft_width(format, flags, i, n);
 		else if (format[i + n] == '*')
 			flags->width = va_arg(param, int);
 		n++;
 	}
+	n = 1;
+	while (ft_check_convert(format[i + n]) == 0)
+		n++;
 	flags->type = format[i + n];
-	ft_check_error(flags);
+	ft_check_error(flags, format[i + n]);
 }

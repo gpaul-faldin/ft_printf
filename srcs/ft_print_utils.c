@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:29:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:13:56 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 19:12:30 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,15 @@ int			ft_check_convert(char c)
 	while (CONVERT[i])
 	{
 		if (c == CONVERT[i])
-			return (0);
+		{
+			if (i >= 3 && i <= 7)
+				return (2);
+			else
+				return (1);
+		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 char		*ft_rev(char *re)
@@ -66,7 +71,7 @@ char		*ft_strdup_flags(char *s1, int index)
 
 	size = 0;
 	n = 0;
-	while (ft_check_convert(s1[index + size]) == 1)
+	while (ft_check_convert(s1[index + size]) == 0)
 		size++;
 	if (!(s2 = malloc(sizeof(char) * (size + 1))))
 		return (0);

@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 15:13:07 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:32:17 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:43:18 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ static int		ft_flags_ptr_2(t_struct *list, t_flags *flags, int size)
 }
 
 char			*ft_check_prefix(int size, char *cpy,
-	t_struct *list, t_flags *flags)
+t_struct *list, t_flags *flags)
 {
 	char	*tmp;
-	
+
 	tmp = 0;
 	if (flags->width < size && flags->dot == 1)
 	{

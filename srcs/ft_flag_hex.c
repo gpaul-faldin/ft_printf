@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 19:22:55 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 16:44:53 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 19:14:56 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char			*ft_flag_hexa(t_struct *list, t_flags *flags, char format)
 	if (format == CONVERT[6])
 		cpy = ft_convert_hex(list->x_hexa, list);
 	else
-		cpy = ft_convert_hex(list->X_hexa, list);
+		cpy = ft_convert_hex(list->upper_hexa, list);
 	size = ft_strlen(cpy);
 	if ((size == 1 && cpy[0] == '0' && flags->dot == 1 &&
 	flags->preci == 0) || (flags->preci > 0 && flags->width > 0))

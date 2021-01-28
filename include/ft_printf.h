@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:15:41 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 19:14:43 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef	struct	s_struct
 	char							*s_para;
 	char							*ui_para;
 	char							*d_para;
-	char							*X_hexa;
+	char							*upper_hexa;
 	char							*x_hexa;
 	unsigned int					hexa;
 	unsigned long int				vd_ptr;
