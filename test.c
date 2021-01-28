@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 15:11:33 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:33:59 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:41:43 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int		main(void)
 	printf ("TRUE SIZE %d\n", printf("%00183.%\n"));
 
 }
+
+//printf("zero == %d\n", flags->zero);
 
 
 //printf("yooooooooooooo\n");

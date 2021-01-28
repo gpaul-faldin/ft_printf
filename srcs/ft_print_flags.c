@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:35:00 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:41:13 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ int		ft_check_error(t_flags *flags)
 	}
 	if (flags->dot == 1 && flags->type == 'c')
 		flags->dot = 0;
-	if (flags->zero == 1 && flags->dot == 1 && flags->preci >= 0)
-		flags->zero = 0;
 	return (1);
 }
 
