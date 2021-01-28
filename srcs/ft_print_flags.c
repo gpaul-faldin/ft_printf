@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/14 23:44:05 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 19:12:03 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 23:43:48 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_init_struct_flags(t_flags *flags)
 	flags->type = 0;
 	flags->size = 0;
 	flags->index = 0;
+	flags->spc = 0;
 }
 
 int		ft_check_error(t_flags *flags, char format)
@@ -37,6 +38,8 @@ int		ft_check_error(t_flags *flags, char format)
 	if (flags->zero == 1 && flags->dot == 1 && flags->preci >= 0 &&
 	ft_check_convert(format) == 2)
 		flags->zero = 0;
+	if (flags->minus == 1 && flags->width == 0)
+		flags->minus = 0;
 	return (1);
 }
 

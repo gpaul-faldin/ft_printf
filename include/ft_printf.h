@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:52 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 19:14:43 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 23:43:41 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef	struct	s_flags
 	char			type;
 	int				size;
 	int				index;
+	int				spc;
 }				t_flags;
 
 int				ft_printf(const char *format, ...);
@@ -68,5 +69,6 @@ char			*ft_convert_ptr(unsigned long int nb, t_struct *list,
 				t_flags *flags);
 char			*ft_flag_ptr(t_struct *list, t_flags *flags);
 char			*ft_base(t_struct *list, char format);
+void			ft_check_zero(t_flags *flags);
 
 #endif

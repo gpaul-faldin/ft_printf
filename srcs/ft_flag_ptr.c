@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 15:13:07 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 18:43:18 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 23:17:20 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ char			*ft_flag_ptr(t_struct *list, t_flags *flags)
 	(flags->preci == 0 || flags->width == 0)) ||
 	(flags->preci > 0 && flags->width > 0))
 	{
-		if (flags->preci != 0 && flags->width != 0)
+		if (flags->preci > 0 && flags->width > 0)
 			ft_width_preci(list, flags, size, cpy);
 		else
 			ft_para_zero(flags, list);

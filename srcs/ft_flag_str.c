@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:05:58 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/28 17:46:07 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 23:16:16 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	ft_flag_str(t_struct *list, t_flags *flags, int size)
 		flags->width--;
 		list->nbr_print++;
 	}
-	if (flags->preci != 0 && flags->width != 0)
+	if (flags->preci > 0 && flags->width > 0)
 	{
 		ft_width_preci_str(list, flags, size);
 		return ;
