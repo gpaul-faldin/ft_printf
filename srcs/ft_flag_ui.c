@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 18:11:37 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/26 01:26:17 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:30:19 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static void		ft_width_preci(t_struct *list, t_flags *flags, int size)
 
 static int		ft_flags_ui_2(t_struct *list, t_flags *flags, int size)
 {
-	if (flags->width != 0)
+	if (flags->width != 0 && flags->minus == 0)
 	{
 		while (flags->width > size)
 		{
@@ -58,7 +58,7 @@ static int		ft_flags_ui_2(t_struct *list, t_flags *flags, int size)
 			list->nbr_print++;
 		}
 	}
-	else
+	else if (flags->minus == 0)
 	{
 		while (flags->preci > size)
 		{

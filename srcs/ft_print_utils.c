@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:29:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 19:42:08 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:13:56 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char		*ft_rev(char *re)
 	return (re);
 }
 
-int			size_count(unsigned int n)
+int			size_count(unsigned long int n)
 {
 	int		res;
 

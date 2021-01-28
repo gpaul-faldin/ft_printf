@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/21 15:13:07 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 21:56:25 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:32:17 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void		ft_width_preci(t_struct *list, t_flags *flags,
 
 static int		ft_flags_ptr_2(t_struct *list, t_flags *flags, int size)
 {
-	if (flags->width != 0)
+	if (flags->width != 0 && flags->minus == 0)
 	{
 		while (flags->width > size)
 		{
@@ -69,7 +69,7 @@ static int		ft_flags_ptr_2(t_struct *list, t_flags *flags, int size)
 			list->nbr_print++;
 		}
 	}
-	else
+	else if (flags->minus == 0)
 	{
 		while (flags->preci > size)
 		{
@@ -87,6 +87,9 @@ static int		ft_flags_ptr_2(t_struct *list, t_flags *flags, int size)
 char			*ft_check_prefix(int size, char *cpy,
 	t_struct *list, t_flags *flags)
 {
+	char	*tmp;
+	
+	tmp = 0;
 	if (flags->width < size && flags->dot == 1)
 	{
 		write(1, "0x", 2);

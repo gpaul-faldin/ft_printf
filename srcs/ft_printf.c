@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/11 14:21:15 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/25 23:10:48 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:12:56 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_param(char conv, va_list param, t_struct *list)
 			list->s_para = ft_strdup("(null)");
 	}
 	else if (conv == CONVERT[2])
-		list->vd_ptr = (long long int)va_arg(param, void*);
+		list->vd_ptr = (unsigned long int)va_arg(param, void*);
 	else if (conv == CONVERT[3] || conv == CONVERT[4])
 		list->d_para = ft_itoa(va_arg(param, int));
 	else if (conv == CONVERT[6] || conv == CONVERT[7])
@@ -93,8 +93,8 @@ void	ft_init_struc(t_struct *list)
 	list->s_para = 0;
 	list->d_para = 0;
 	list->ui_para = 0;
-	list->m_hexa = "0123456789ABCDEF";
-	list->h_hexa = "0123456789abcdef";
+	list->X_hexa = "0123456789ABCDEF";
+	list->x_hexa = "0123456789abcdef";
 	list->hexa = 0;
 	list->vd_ptr = 0;
 }

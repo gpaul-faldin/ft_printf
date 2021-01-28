@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/12 15:27:24 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/26 01:16:33 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 18:13:30 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char		*ft_print_hex(char *base, t_struct *list)
 	return (0);
 }
 
-int			ft_print_ptr(long long int nb, char *base, t_struct *list)
+int			ft_print_ptr(unsigned long int nb, char *base, t_struct *list)
 {
 	char	*temp;
 	int		i;
@@ -88,7 +88,7 @@ void		ft_hexa_ui(t_struct *list, char format, t_flags *flags)
 	else if (format == CONVERT[2])
 	{
 		if (flags->dot == 0 && flags->width == 0 && flags->preci == 0)
-			ft_print_ptr((long long int)list->vd_ptr, list->h_hexa, list);
+			ft_print_ptr(list->vd_ptr, list->x_hexa, list);
 		else
 			free(ft_flag_ptr(list, flags));
 	}
@@ -96,9 +96,9 @@ void		ft_hexa_ui(t_struct *list, char format, t_flags *flags)
 	{
 		if ((format == CONVERT[6] || format == CONVERT[7]) && flags->dot == 0 &&
 			flags->width == 0 && flags->preci == 0)
-			ft_print_hex(ft_base(flags, list), list);
+			ft_print_hex(ft_base(list, format), list);
 		else
-			free(ft_flag_hexa(list, flags));
+			free(ft_flag_hexa(list, flags, format));
 	}
 }
 

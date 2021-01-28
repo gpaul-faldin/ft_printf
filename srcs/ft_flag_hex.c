@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/20 19:22:55 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/26 01:27:24 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 16:44:53 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void		ft_width_preci(t_struct *list, t_flags *flags,
 	int	temp;
 
 	temp = flags->width - flags->preci;
-	while (temp != 0 && flags->width > size && flags->minus == 0 && temp-- &&
+	while (temp > 0 && flags->width > size && flags->minus == 0 && temp-- &&
 	++list->nbr_print && flags->width--)
 		write(1, " ", 1);
 	while (flags->width - temp > size && ++list->nbr_print)
@@ -75,15 +75,15 @@ static int		ft_flags_hexa_2(t_struct *list, t_flags *flags, int size)
 	return (size);
 }
 
-char			*ft_flag_hexa(t_struct *list, t_flags *flags)
+char			*ft_flag_hexa(t_struct *list, t_flags *flags, char format)
 {
 	char	*cpy;
 	int		size;
 
-	if (flags->type == 'x')
-		cpy = ft_convert_hex(list->h_hexa, list);
+	if (format == CONVERT[6])
+		cpy = ft_convert_hex(list->x_hexa, list);
 	else
-		cpy = ft_convert_hex(list->m_hexa, list);
+		cpy = ft_convert_hex(list->X_hexa, list);
 	size = ft_strlen(cpy);
 	if ((size == 1 && cpy[0] == '0' && flags->dot == 1 &&
 	flags->preci == 0) || (flags->preci > 0 && flags->width > 0))

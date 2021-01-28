@@ -6,7 +6,7 @@
 /*   By: gpaul <gpaul@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/19 15:05:58 by gpaul             #+#    #+#             */
-/*   Updated: 2021/01/26 01:26:52 by gpaul            ###   ########.fr       */
+/*   Updated: 2021/01/28 17:46:07 by gpaul            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,14 @@ void	ft_width_preci_str(t_struct *list, t_flags *flags, int size)
 {
 	int	temp;
 
-	if (flags->width < 0 || flags->preci < 0)
+	if (flags->preci < 0)
 		temp = ft_neg(flags);
 	else
 		temp = flags->width - flags->preci;
 	while (temp > 0 && flags->minus == 0 && --flags->width &&
 	++list->nbr_print && temp--)
 		write(1, " ", 1);
-	if ((temp < 0 || flags->width - temp > size || flags->preci < 0) &&
-	flags->width != 1)
+	if (flags->preci > size || flags->preci < 0)
 		write(1, list->s_para, size);
 	else
 		write(1, list->s_para, flags->width - temp);
@@ -51,10 +50,8 @@ void	ft_width_preci_str(t_struct *list, t_flags *flags, int size)
 	++list->nbr_print && flags->width--)
 		if (write(1, " ", 1))
 			temp--;
-	if (temp != 0 && flags->width != 1)
+	if (flags->preci <= 0 || flags->preci > size)
 		list->nbr_print = list->nbr_print + size;
-	else if (flags->width != 1)
-		list->nbr_print = list->nbr_print + flags->width;
 	else
 		list->nbr_print = list->nbr_print + flags->preci;
 }
