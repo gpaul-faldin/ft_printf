@@ -1,2 +1,2 @@
 # ft_printf
-Printf_42
+This project consist on recoding the printf function, including: flags, option, precision
